@@ -33,21 +33,13 @@ export default class PokemonGame extends React.Component {
 		}
 	}
 	
-	handleBattleClick = () => {
-		const player_res = Math.floor(Math.random() * 6) + 1;
-		const opponent_res = Math.floor(Math.random() * 6) + 1;
-		if (player_res === 6){
-			console.log("TODO: Player hit 6")
-		}
-		if (opponent_res === 6){
-			console.log("TODO: Opponent hit 6")
-		}
-		var new_player_health = this.state.playerPokemon.health - player_res;
+	handleBattleClick = (player_res, opponent_res) => {
+		var new_player_health = this.state.playerPokemon.health - opponent_res;
 		if (new_player_health <= 0){
 			new_player_health = 0;
 			this.battleEndHandler(this.PlayerType.Player)
 		}
-		var new_opponent_health = this.state.opponentPokemon.health - opponent_res;
+		var new_opponent_health = this.state.opponentPokemon.health - player_res;
 		if (new_opponent_health <= 0){
 			new_opponent_health = 0;
 			this.battleEndHandler(this.PlayerType.Opponent)
