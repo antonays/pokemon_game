@@ -1,4 +1,5 @@
 import React from "react";
+import './PokemonPanel.css';
 import PokemonHealthPanel from "./PokemonHealthPanel.js";
 
 export default  class PokemonPanel extends React.Component {
