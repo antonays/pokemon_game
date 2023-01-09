@@ -6,7 +6,7 @@ export default  class PokemonPanel extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      myName:this.props.name,
+      myName:'',
       myType:this.props.playerType,
       myImage:''
     };
@@ -14,7 +14,7 @@ export default  class PokemonPanel extends React.Component {
 
   componentDidMount() {
     console.log('getting pokemon image');
-		let randomPokemonId = Math.floor(Math.random() * 500)
+		const randomPokemonId = Math.floor(Math.random() * 500);
     fetch(`https://pokeapi.co/api/v2/pokemon/${randomPokemonId}`)
       .then(res => res.json())
       .then(
@@ -25,6 +25,9 @@ export default  class PokemonPanel extends React.Component {
 					});
         },
 			)
+      .catch(function(error) {
+        console.error("failed to fetch pokemon image :(");
+      });
   }
 
   render() {

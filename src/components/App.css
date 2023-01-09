@@ -47,8 +47,23 @@ div.fadeMe {
     left:0px;
     z-index:1000;
     display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+div.fadeMe .overlay-controls{
+  display:flex;
   align-items:center;
-  justify-content:center;
+}
+
+div.fadeMe .overlay-message{
+  font-size: 3rem;
+  background-color: cadetblue;
+  padding: 1em 0.5em;
+  font-weight: 600;
+  border: 3px solid;
 }
 
 div.fadeMe.hidden {
@@ -60,4 +75,8 @@ div.fadeMe button {
   color:white;
   background-color: black;
   margin:1em;
+}
+
+div.fadeMe button:hover {
+  background-color: rgb(91, 128, 160);
 }

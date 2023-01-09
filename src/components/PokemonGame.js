@@ -25,24 +25,24 @@ export default class PokemonGame extends React.Component {
 			},
 			gameresults:{
 				wins:0,
-				defeats:0
+				defeats:0,
+				lastResultText:''
 			},
-			gameOverFlag:false,
-			playerKey:0,
-			opponentKey:0
+			gameOverFlag:false
 		}
 	}
 	
 	handleBattleClick = (player_res, opponent_res) => {
+		console.log(`attack click caught, player hits ${player_res}, opponent hits ${opponent_res}`);
 		var new_player_health = this.state.playerPokemon.health - opponent_res;
 		if (new_player_health <= 0){
 			new_player_health = 0;
-			this.battleEndHandler(this.PlayerType.Player)
+			this.battleEndHandler(this.PlayerType.Player);
 		}
 		var new_opponent_health = this.state.opponentPokemon.health - player_res;
 		if (new_opponent_health <= 0){
 			new_opponent_health = 0;
-			this.battleEndHandler(this.PlayerType.Opponent)
+			this.battleEndHandler(this.PlayerType.Opponent);
 		}
 		this.setState({
 			playerPokemon:{
@@ -55,29 +55,29 @@ export default class PokemonGame extends React.Component {
 					last_die_cast: opponent_res,
 					key: this.state.opponentPokemon.key
 				}
-		})
+		});
 	};
 
 	battleEndHandler = loser => {
 		this.setState({gameOverFlag:true});
 		if (loser === this.PlayerType.Player){
-			alert ('Game Over :( ..');
 			this.setState({
 				gameresults: {
 					defeats: this.state.gameresults.defeats + 1,
 					wins: this.state.gameresults.wins,
+					lastResultText: 'Game Over :( ..'
 				}
-			})
+			});
 		} else if (loser === this.PlayerType.Opponent){
-			alert ('You Win !');
 			this.setState({
 				gameresults: {
 					wins: this.state.gameresults.wins + 1,
-					defeats: this.state.gameresults.defeats
+					defeats: this.state.gameresults.defeats,
+					lastResultText: 'You Win !'
 				}
-			})
+			});
 		} else {
-			console.log("illegal player type")
+			console.log("illegal player type");
 		}
 	}
 
@@ -86,7 +86,7 @@ export default class PokemonGame extends React.Component {
 			health:100,
 			last_die_cast: 0,
 			key: this.state.playerPokemon.key
-		}
+		};
 		if (condition === "new"){
 			player_update_dict["key"] = this.state.playerPokemon.key + 1;
 			this.setState({
@@ -115,15 +115,17 @@ export default class PokemonGame extends React.Component {
 				</Row>
 				<Row>
 					<div className={this.state.gameOverFlag? 'fadeMe' : 'fadeMe hidden'}>
-						<button onClick={(e) => this.restartGame("new", e)}>New Pokemon</button>
-						<button onClick={(e) => this.restartGame("same", e)}>Same Pokemon</button>
+						<div className="overlay-message">{this.state.gameresults.lastResultText}</div>
+						<div className="overlay-controls">
+							<button onClick={(e) => this.restartGame("new", e)}>New Pokemon</button>
+							<button onClick={(e) => this.restartGame("same", e)}>Same Pokemon</button>
+						</div>
 					</div>
 					<Col>
 						<PokemonPanel 
 							key={this.state.playerPokemon.key}
 							pokemon={this.state.playerPokemon}
 							playerType={this.PlayerType.Player} 
-							name='Player'
 							loserHook={this.notifyBattleLoser} 
 						/>
 					</Col>
@@ -139,7 +141,6 @@ export default class PokemonGame extends React.Component {
 							key={this.state.opponentPokemon.key}
 							pokemon={this.state.opponentPokemon}
 							playerType={this.PlayerType.Opponent} 
-							name='Opponent' 
 							loserHook={this.notifyBattleLoser}
 						/>
 					</Col>
