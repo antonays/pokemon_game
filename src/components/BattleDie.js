@@ -1,11 +1,7 @@
 import React from "react";
 
-export default class BattleDie extends React.Component {
-  render() {
-    return ( 
-        <div className="dice-result">
-            {this.props.value}
-        </div>
-    );        
-  }
+export default function BattleDie(props) {
+  return (
+    <div className="dice-result">{props.value}</div>
+  );
 }

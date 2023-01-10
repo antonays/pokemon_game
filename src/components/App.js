@@ -1,9 +1,9 @@
-import './App.css';
+import './css/App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import PokemonGame from "./PokemonGame.js";
 import Container from 'react-bootstrap/Container';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
-function App() {
+const App = () => {
   return (
     
     <Container>
