@@ -18,10 +18,10 @@ const BattlePanel = (props) => {
     <div className="component-battle-panel">
       <Row>
         <Col>
-          <BattleDie name="player-die" value={playerRoll} />
+          <BattleDie name="player-die" value={playerRoll} style={{float:'left'}}/>
         </Col>
         <Col>
-          <BattleDie name="opponent-die" value={opponentRoll} />
+          <BattleDie name="opponent-die" value={opponentRoll} style={{float:'right'}}/>
         </Col>
       </Row>
       <BattleText text={`You hit for ${playerRoll}`}/>
