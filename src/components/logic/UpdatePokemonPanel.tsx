@@ -1,9 +1,7 @@
 import { useState, useEffect } from "react";
-import { IPokemonPanelParams } from "../../types/IPokemonPanelParams";
-const { PokemonAPI } = require("../apis/PokemonAPI.ts");
-const { IPokemonPanelParams } = require("../../types/IPokemonPanelParams");
+const { PokemonAPI } = require("../../apis/PokemonAPI.ts");
 
-const UpdatePokemonPanel = (): IPokemonPanelParams => {
+const UpdatePokemonPanel = (): {} => {
   const [myName, setMyName] = useState<string>("");
   const [myImage, setmyImage] = useState<string>("");
 

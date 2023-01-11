@@ -1,9 +1,9 @@
 import React from "react";
+import UpdatePokemonPanel from "./logic/UpdatePokemonPanel.tsx";
 import PokemonHealthPanel from "./PokemonHealthPanel.js";
-import UpdatePokemonPanel from "./logic/UpdatePokemonPanel";
 import "./css/PokemonPanel.css";
 
-const PokemonPanel = (props: any) => {
+const PokemonPanel = (props) => {
   const {
     myName,
     myImage

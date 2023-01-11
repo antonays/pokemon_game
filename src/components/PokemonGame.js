@@ -1,5 +1,5 @@
 import BattlePanel from "./BattlePanel.js";
-import PokemonPanel from "./PokemonPanel.tsx";
+import PokemonPanel from "./PokemonPanel.js";
 import PlayPokemonGame from "./logic/PlayPokemonGame.tsx";
 import React from "react";
 import Row from "react-bootstrap/Row";
